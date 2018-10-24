@@ -1,0 +1,100 @@
+/*
+  DevG likes too much fun to do with numbers. 
+  Once his friend Arya came and gave him a challenge, he gave DevG an array of digits which is forming a number currently (will be called as given number). 
+  DevG was challanged to find the just next greater number which can be formed using digits of given number. 
+  Now DevG needs your help to find that just next greater number and win the challenge.
+
+  Input:
+2
+5
+1 5 4 8 3
+10
+1 4 7 4 5 8 4 1 2 6
+
+Output:
+15834
+1474584162
+
+
+
+*/
+#include <bits/stdc++.h>
+#define fie ios_base::sync_with_stdio(false);cin.tie(NULL);
+using namespace std;
+#define ll long long int
+int main()
+{
+    fie
+    int t;
+    cin >> t;
+    while (t--)
+    {
+    		ll n;
+    		cin >> n;
+    		stack<int> s1;
+    		vector<int> v2;
+    		int top=0;
+    		int flag=0;
+    		while (n--)
+    		{
+    					int d;
+    					cin >> d;
+    					s1.push(d);
+    		}
+    		while (!s1.empty())
+    		{
+    				top = s1.top();
+    				v2.push_back(top);
+    				s1.pop();
+    				if (s1.empty())
+    				{
+    					break;
+    				}
+    				if (top > s1.top() )
+    				{
+    					flag =1;
+    					break;
+    				}
+    		}
+    		
+    		
+    		
+    		if (flag)
+    		{
+    			int top_new = s1.top();
+    			s1.pop();
+    			vector<int> ::iterator it =upper_bound(v2.begin(), v2.end(), top_new);
+    			stack<int> temp;
+    			while (!s1.empty())
+    			{
+    				int top1=s1.top();
+    				temp.push(top1);
+    				s1.pop();
+    			}
+    			while (!temp.empty())
+    			{
+    				cout << temp.top();
+    				temp.pop();
+    			}
+    			cout << *it;
+    			v2.erase(it);
+    			ll i=0;
+    			for (; i < v2.size(); i++ )
+    			{
+    					if (v2[i] <= top_new)
+    						cout << v2[i];
+    					else
+    						break;
+    			}
+    			cout << top_new;
+    			for ( ;i < v2.size();i++)
+    			{
+    					cout << v2[i];
+    			}
+    			cout << endl;
+    		}
+    		else
+    			cout << -1 << endl;
+    }
+
+}
